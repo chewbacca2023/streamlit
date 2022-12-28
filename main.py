@@ -41,7 +41,7 @@ import requests
 #
 # with st.container():
 #     st.image(image)
-import save_to_firestore
+# import save_to_firestore
 
 st.title("Mortgage Calculator")
 
