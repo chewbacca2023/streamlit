@@ -12,6 +12,11 @@ from plotly.subplots import make_subplots
 # from firebase_admin import db
 # from firebase_admin import firestore
 import requests
+from google.cloud import firestore
+
+# Add a new user to the database
+db = firestore.Client()
+db = firestore.Client.from_service_account_json("firebase_config.json")
 
 
 
@@ -270,15 +275,15 @@ if st.button('Submit'):
     #     }
     # })
     # #firestore
-    # doc_ref = fire.collection('prospect').document('contactinfo')
-    # doc_ref.set({
-    #     'email': f'{email}',
-    #     'etype': 'home',
-    #     'firstname': f'{fname}',
-    #     'lastname': f'{lname}',
-    #     'phonenumber': f'{phone}',
-    #     'ptype': 'mobile'
-    # })
+    doc_ref = db.collection('prospect').document('contactinfo')
+    doc_ref.set({
+        'email': f'{email}',
+        'etype': 'home',
+        'firstname': f'{fname}',
+        'lastname': f'{lname}',
+        'phonenumber': f'{phone}',
+        'ptype': 'mobile'
+    })
 else:
     st.write('Please complete all fields to continue')
 
